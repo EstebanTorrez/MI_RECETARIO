@@ -18,7 +18,7 @@ const Login = () => {
     try {
       const data = await login(username, password);
       setAuthToken(data.token);
-      navigate('/homeprivate');  // Redirige a HomePrivate
+      navigate('/home');  // Redirige a Home
     } catch (error) {
       setError(error.message);
     }
@@ -27,12 +27,7 @@ const Login = () => {
   return (
     <div>
       <header>
-        <h1>Login</h1>
-        <nav>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-          </ul>
-        </nav>
+        <h1>Login</h1>        
       </header>
       <main>
         <div className="container">
