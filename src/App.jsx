@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import CreateRecipe from './pages/CreateRecipe';
+import Logout from './pages/Logout'; // Importa el componente Logout
 import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
+          <Route path="/logout" element={<Logout />} /> {/* Agrega la ruta para Logout */}
         </Routes>
       </Router>
     </AuthProvider>
@@ -28,3 +30,5 @@ function App() {
 }
 
 export default App;
+
+
