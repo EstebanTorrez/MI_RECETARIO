@@ -11,3 +11,15 @@ export const getCategories = async () => {
     throw new Error('Error al obtener las categorías');
   }
 };
+
+// Nueva función para eliminar una categoría
+export const deleteCategory = async (categoryId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/reciperover/categories/${categoryId}/`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response ? error.response.data.detail : 'Error deleting category');
+  }
+};
+
+
