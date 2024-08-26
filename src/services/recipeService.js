@@ -28,3 +28,13 @@ export const getRating = async (recipeId) => {
     throw new Error(error.response ? error.response.data.detail : 'Error fetching rating');
   }
 };
+
+// Nueva función para eliminar una receta
+export const deleteRecipe = async (recipeId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/reciperover/recipes/${recipeId}/`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response ? error.response.data.detail : 'Error deleting recipe');
+  }
+};
