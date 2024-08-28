@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Container, Form, Button, Alert, Image, Modal } from 'react-bootstrap'; 
 import { getProfile, updateProfile, uploadProfileImage } from '../services/auth'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -27,7 +26,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const data = await getProfile(); // función que devuelve los datos del perfil
+        const data = await getProfile();
         setProfileData(data);
       } catch (error) {
         setNotification({ open: true, message: 'Failed to fetch profile', severity: 'error' });
@@ -45,7 +44,7 @@ const Profile = () => {
     const file = e.target.files[0];
     if (file) {
       setNewImage(URL.createObjectURL(file));
-      setImageFile(file); // Guarda el archivo para enviarlo al servidor
+      setImageFile(file);
     }
   };
 
@@ -53,13 +52,13 @@ const Profile = () => {
     e.preventDefault();
     try {
       if (imageFile) {
-        await uploadProfileImage(profileData.user_id, imageFile); // Subir imagen
-        setProfileData({ ...profileData, image: newImage });  // Actualiza la imagen en el estado local después de la subirla
+        await uploadProfileImage(profileData.user_id, imageFile);
+        setProfileData({ ...profileData, image: newImage });
       }
-      const updatedData = await updateProfile(profileData.user_id, profileData); // Actualizar perfil
+      const updatedData = await updateProfile(profileData.user_id, profileData);
       setProfileData(updatedData);
       setNotification({ open: true, message: 'Profile updated successfully', severity: 'success' });
-      setIsEditing(false);  // Salir del modo de edición después de la actualización
+      setIsEditing(false);
     } catch (error) {
       setNotification({ open: true, message: error.message, severity: 'error' });
     }
@@ -78,7 +77,7 @@ const Profile = () => {
               <Form.Label>Profile Image</Form.Label>
               <div className="d-flex align-items-center">
                 <Image
-                  src={newImage || profileData.image || "https://files2.soniccdn.com/files/2021/12/03/Megacoin.jpeg"}
+                  src={newImage || profileData.image || "https://via.placeholder.com/100"}
                   roundedCircle
                   style={{ width: '100px', height: '100px' }}
                   onClick={() => setIsModalOpen(true)}
@@ -92,6 +91,7 @@ const Profile = () => {
                 />
               </div>
             </Form.Group>
+            {/* Campos de perfil */}
             <Form.Group controlId="formUsername">
               <Form.Label>Username</Form.Label>
               <Form.Control
@@ -112,69 +112,24 @@ const Profile = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Group controlId="formLastName">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="last_name"
-                value={profileData.last_name || ''}
-                readOnly={!isEditing}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="formEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                value={profileData.email || ''}
-                readOnly={!isEditing}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="formDob">
-              <Form.Label>Date of Birth</Form.Label>
-              <Form.Control
-                type="date"
-                name="dob"
-                value={profileData.dob || ''}
-                readOnly={!isEditing}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="formBio">
-              <Form.Label>Bio</Form.Label>
-              <Form.Control
-                as="textarea"
-                name="bio"
-                value={profileData.bio || ''}
-                readOnly={!isEditing}
-                onChange={handleChange}
-                rows={4}
-              />
-            </Form.Group>
+            {/* Más campos aquí */}
             <Button type="submit" variant="primary" disabled={!isEditing}>Update Profile</Button>
             <Button type="button" variant="secondary" onClick={() => setIsEditing(!isEditing)}>
               {isEditing ? 'Cancel' : 'Edit Profile'}
             </Button>
             {notification.open && (
-              <Alert
-                variant={notification.severity === 'success' ? 'success' : 'danger'}
-                onClose={() => setNotification({ ...notification, open: false })}
-                dismissible
-              >
+              <Alert variant={notification.severity === 'success' ? 'success' : 'danger'}>
                 {notification.message}
               </Alert>
             )}
           </Form>
         </Container>
-        {/* Modal para previsualizar la imagen antes de subirla */}
         <Modal show={isModalOpen} onHide={() => setIsModalOpen(false)}>
           <Modal.Header closeButton>
             <Modal.Title>Preview Image</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Image src={newImage || profileData.image || "https://files2.soniccdn.com/files/2021/12/03/Megacoin.jpeg"} fluid />
+            <Image src={newImage || profileData.image || "https://via.placeholder.com/100"} fluid />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => setIsModalOpen(false)}>Close</Button>
