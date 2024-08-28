@@ -14,29 +14,24 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   const login = (newToken) => setToken(newToken);
+
   const logout = async () => {
     try {
-      // Realizar la solicitud POST para cerrar sesión
       await fetch('/users/profiles/logout/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Token ${token}`, // Incluye el token en la cabecera
+          'Authorization': `Token ${token}`,
         },
       });
-      
-      // Limpiar el token y redirigir al usuario a la página de inicio de sesión
       setToken('');
       localStorage.removeItem('token');
-      navigate('/login');  
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }
   };
 
-  const isAuthenticated = !!token;  // Determina si el usuario está autenticado
-  console.log('isAuthenticated:', isAuthenticated); // Verifica el valor de isAuthenticated
-
+  const isAuthenticated = !!token;
 
   return (
     <AuthContext.Provider value={{ token, login, logout, isAuthenticated }}>
