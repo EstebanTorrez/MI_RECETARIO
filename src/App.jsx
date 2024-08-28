@@ -8,6 +8,7 @@ import CreateRecipe from './pages/CreateRecipe';
 import Logout from './pages/Logout';
 import DeleteRecipe from './pages/DeleteRecipe'; // Importa el componente DeleteRecipe
 import DeleteCategory from './pages/DeleteCategory'; // Importa el componente DeleteCategory
+import AddIngredients from './components/AddIngredients'; // Importa el componente AddIngredients
 import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
@@ -27,6 +28,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/delete-recipe/:recipeId" element={<PrivateRoute element={<DeleteRecipe />} />} />
           <Route path="/delete-category/:categoryId" element={<PrivateRoute element={<DeleteCategory />} />} />
+          <Route path="/add-ingredients" element={<PrivateRoute element={<AddIngredients />} />} /> {/* Ruta añadida */}
         </Routes>
       </Router>
     </AuthProvider>
