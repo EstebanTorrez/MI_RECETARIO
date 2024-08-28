@@ -32,7 +32,6 @@ const NavbarComponent = () => {
               <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/register">Register</NavDropdown.Item>
             </NavDropdown>
-          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
@@ -40,5 +39,3 @@ const NavbarComponent = () => {
 };
 
 export default NavbarComponent;
-
-
