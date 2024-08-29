@@ -31,7 +31,8 @@ const NavbarComponent = () => {
             <NavDropdown title="Account" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/register">Register</NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown>  // <- Aquí falta cerrar
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
