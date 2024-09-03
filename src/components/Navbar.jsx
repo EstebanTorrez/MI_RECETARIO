@@ -7,6 +7,8 @@ const NavbarComponent = () => {
   const navigate = useNavigate();
   const { logout, isAuthenticated } = useAuth();
 
+  console.log('User is authenticated:', isAuthenticated); // Depuración
+
   const handleLogout = () => {
     logout();
     navigate('/login');
@@ -20,6 +22,8 @@ const NavbarComponent = () => {
         <Nav className="mr-auto">
           <Nav.Link as={Link} to="/home">Home</Nav.Link>
           {isAuthenticated && <Nav.Link as={Link} to="/create-recipe">Create Recipe</Nav.Link>}
+          {isAuthenticated && <Nav.Link as={Link} to="/update-recipe">Update Recipe</Nav.Link>}
+          {isAuthenticated && <Nav.Link as={Link} to="/recipe-list">Recipe List</Nav.Link>}
           {isAuthenticated && <Nav.Link as={Link} to="/delete-category">Eliminar Categoría</Nav.Link>}
           {isAuthenticated && <Nav.Link as={Link} to="/delete-recipe">Eliminar Receta</Nav.Link>}
           {isAuthenticated ? (
@@ -31,7 +35,7 @@ const NavbarComponent = () => {
             <NavDropdown title="Account" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/register">Register</NavDropdown.Item>
-            </NavDropdown>  // <- Aquí falta cerrar
+            </NavDropdown>
           )}
         </Nav>
       </Navbar.Collapse>
@@ -40,3 +44,10 @@ const NavbarComponent = () => {
 };
 
 export default NavbarComponent;
+
+
+
+
+
+
+
