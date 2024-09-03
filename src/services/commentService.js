@@ -1,4 +1,3 @@
-// Obtine los comentarios de una receta
 import axios from 'axios';
 
 export const getComments = async (recipeId) => {
