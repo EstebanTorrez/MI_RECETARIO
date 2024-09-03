@@ -69,3 +69,4 @@ export const uploadProfileImage = async (userId, imageFile) => {
     throw new Error(error.response?.data?.detail || 'Error al subir la imagen');
   }
 };
+
