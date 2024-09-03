@@ -12,6 +12,16 @@ export const getRecipes = async () => {
   }
 };
 
+// Obtener receta por ID
+export const getRecipeById = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/reciperover/recipes/${id}/`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response ? error.response.data.detail : 'Error fetching recipe by ID');
+  }
+};
+
 // Obtener recetas por categoría
 export const getRecipesByCategory = async (categoryId) => {
   try {
@@ -32,14 +42,14 @@ export const getRating = async (recipeId) => {
   }
 };
 
-// Nueva función para eliminar una receta
+// Eliminar una receta
 export const deleteRecipe = async (recipeId) => {
   const token = localStorage.getItem('token'); // Obtener el token de localStorage
   try {
     const response = await axios.delete(`${API_URL}/reciperover/recipes/${recipeId}/`, {
       headers: {
-        'Authorization': `Token ${token}` // Asegúrate de que el token está bien
-      }
+        'Authorization': `Token ${token}`, // Asegúrate de que el token está bien
+      },
     });
     return response.data;
   } catch (error) {
@@ -47,3 +57,18 @@ export const deleteRecipe = async (recipeId) => {
   }
 };
 
+// Actualizar una receta
+export const updateRecipe = async (id, recipeData) => {
+  const token = localStorage.getItem('token'); // Obtener el token de localStorage
+  try {
+    const response = await axios.put(`${API_URL}/reciperover/recipes/${id}/`, recipeData, {
+      headers: {
+        'Authorization': `Token ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response ? error.response.data.detail : 'Error updating recipe');
+  }
+};
