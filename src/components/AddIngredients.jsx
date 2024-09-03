@@ -1,4 +1,3 @@
-// AddIngredients.jsx
 import React, { useState } from 'react';
 import { Container, Form, Button, Alert } from 'react-bootstrap';
 import { addIngredient } from '../services/ingredientService';
@@ -18,7 +17,7 @@ const AddIngredients = () => {
       await addIngredient(ingredientData);
       setSuccess('Ingredient added successfully!');
       setError('');
-      // Reset form fields
+     
       setName('');
       setDescription('');
     } catch (err) {
