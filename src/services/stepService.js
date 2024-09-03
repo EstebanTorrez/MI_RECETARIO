@@ -19,3 +19,4 @@ export const getRating = async (recipeId) => {
     throw new Error(error.response ? error.response.data.detail : 'Error fetching rating');
   }
 };
+
