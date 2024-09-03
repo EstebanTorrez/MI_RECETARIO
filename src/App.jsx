@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
@@ -6,9 +7,10 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import CreateRecipe from './pages/CreateRecipe';
 import Logout from './pages/Logout';
-import DeleteRecipe from './pages/DeleteRecipe'; // Importa el componente DeleteRecipe
-import DeleteCategory from './pages/DeleteCategory'; // Importa el componente DeleteCategory
-import AddIngredients from './components/AddIngredients'; // Importa el componente AddIngredients
+import DeleteRecipe from './pages/DeleteRecipe';
+import DeleteCategory from './pages/DeleteCategory';
+import RecipeList from './pages/RecipeList';
+import UpdateRecipe from './pages/UpdateRecipe';
 import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
@@ -28,7 +30,8 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/delete-recipe/:recipeId" element={<PrivateRoute element={<DeleteRecipe />} />} />
           <Route path="/delete-category/:categoryId" element={<PrivateRoute element={<DeleteCategory />} />} />
-          <Route path="/add-ingredients" element={<PrivateRoute element={<AddIngredients />} />} /> {/* Ruta añadida */}
+          <Route path="/recipe-list" element={<PrivateRoute element={<RecipeList />} />} />
+          <Route path="/update-recipe/:id" element={<PrivateRoute element={<UpdateRecipe />} />} /> {/* Nueva ruta */}
         </Routes>
       </Router>
     </AuthProvider>
@@ -36,3 +39,5 @@ function App() {
 }
 
 export default App;
+
+
