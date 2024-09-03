@@ -21,5 +21,3 @@ export const deleteCategory = async (categoryId) => {
     throw new Error(error.response ? error.response.data.detail : 'Error deleting category');
   }
 };
-
-
