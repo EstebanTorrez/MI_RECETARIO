@@ -36,3 +36,4 @@ function useFetch(initialUrl, initialOptions = {}) {
 }
 
 export default useFetch;
+
